@@ -32,7 +32,7 @@ export default function SignUp() {
               <Label value='Your password' />
               <TextInput type='text' placeholder="Password" id='password' />
             </div>
-            <Button gradientDuoTone="purpleToPink" type="submit">
+            <Button gradientDuoTone="purpleToPink" type="submit" className="w-full">
               Sign up
             </Button>
           </form>
