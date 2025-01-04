@@ -30,7 +30,7 @@ export default function Header() {
             <FaMoon/>
           </Button>
           <Link to='/sign-in'>
-            <Button className="px-2 py-1 text-sm font-medium bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-lg">
+            <Button className="px-2 py-1 text-sm font-medium bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-lg" >
               Sign In
             </Button> 
           </Link>
