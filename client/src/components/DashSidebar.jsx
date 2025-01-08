@@ -1,7 +1,8 @@
-import {Sidebar } from 'flowbite-react';
-import {HiUser, HiArrowSmRight} from 'react-icons/hi';
+import { Sidebar } from 'flowbite-react';
+import { HiUser, HiArrowSmRight } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useEffect,useState } from 'react';
-import {Link, useLocation} from 'react-router-dom';
 
 export default function DashSidebar() {
     const location = useLocation();
@@ -14,20 +15,20 @@ export default function DashSidebar() {
       }
     },[location.search]);
   return (
-    <Sidebar className="w-full md:w-56 bg-white dark:bg-gray-800">
-        <Sidebar.Items>
-            <Sidebar.ItemGroup>
-                <Link to='/dashboard?tab=profile'>
-                    <Sidebar.Item active={tab === 'profile'} icon={HiUser} label='User' labelColor='dark' className="text-gray-800 dark:text-white bg-transparent dark:bg-gray-700">
-                        Profile
-                    </Sidebar.Item>
-                </Link>
-                <Sidebar.Item icon={HiArrowSmRight} className='cursor-pointer text-gray-800 dark:text-white bg-transparent  dark:bg-gray-700'>
-                    Sign Out
-                </Sidebar.Item>
-            </Sidebar.ItemGroup>
-        </Sidebar.Items>
+    <Sidebar className='w-full md:w-56'>
+      <Sidebar.Items>
+        <Sidebar.ItemGroup className='flex flex-col gap-1'>
+          <Link to='/dashboard?tab=profile'>
+            <Sidebar.Item active={tab === 'profile'} icon={HiUser} label='User' labelColor='dark' className="text-gray-800 dark:text-white bg-transparent dark:bg-gray-700">
+              Profile
+            </Sidebar.Item>
+          </Link>
+          <Sidebar.Item icon={HiArrowSmRight} className='cursor-pointer text-gray-800 dark:text-white bg-transparent dark:bg-gray-700'>
+              Sign Out
+          </Sidebar.Item>
+        </Sidebar.ItemGroup>
+      </Sidebar.Items>
     </Sidebar>
-    
-  )
+    );
 }
+    
