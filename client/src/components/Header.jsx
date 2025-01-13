@@ -41,6 +41,7 @@ export default function Header() {
         </Button>
 
           {currentUser ? (
+
             <Dropdown
               arrowIcon={false}
               inline
