@@ -1,5 +1,5 @@
 import { Alert, Button, FileInput, Select, TextInput } from 'flowbite-react'
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import {getDownloadURL, getStorage, ref, uploadBytesResumable} from 'firebase/storage';
@@ -55,19 +55,20 @@ export default function CreatePost() {
   const handleSubmit = async(e) => {
     e.preventDefault();
     try{
+        
         const res= await fetch('/api/post/create',{
             method:'POST',
             headers:{
                 'Content-Type': 'application/json',
             },
             body:JSON.stringify(formData),
+            credentials:'include',
         });
         const data=await res.json();
         if(!res.ok){
-            setPublishError(data.message);
+            setPublishError(data.message || "Unauthorized");
             return;
         }
-        
         if (res.ok){
             setPublishError(null);
             navigate(`/post/${data.slug}`);
