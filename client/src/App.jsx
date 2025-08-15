@@ -1,4 +1,5 @@
 import { BrowserRouter,Routes, Route } from "react-router-dom"
+
 import Home from "./pages/Home"
 import About from "./pages/About"
 import SignUp from "./pages/SignUp"
@@ -32,3 +33,4 @@ export default function App() {
     </BrowserRouter>
   )
 }
+
