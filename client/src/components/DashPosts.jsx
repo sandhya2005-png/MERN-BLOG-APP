@@ -33,7 +33,7 @@ export default function DashPosts() {
   const handleShowMore = async ()=>{
     const startIndex=userPosts.length;
     try{
-      const res=await fetch(`/api/post/getposts?userId=${currentUser._id}&startIndex=${startIdex}`);
+      const res=await fetch(`/api/post/getposts?userId=${currentUser._id}&startIndex=${startIndex}`);
       const data=await res.json();
       if (res.ok) {
         setUserPosts((prev) => [...prev, ...data.posts]);
@@ -112,10 +112,12 @@ export default function DashPosts() {
                     </span>
                   </Table.Cell>
                   <Table.Cell>
-                    <Link className='text-teal-500 hover:underline' to={`update-post/${post._id}`}></Link>
-                    <span>
-                      Edit
-                    </span>
+                    <Link className='text-teal-500 hover:underline' to={`/update-post/${post._id}`}>
+                      <span>
+                        Edit
+                      </span>
+                    </Link>
+
                   </Table.Cell>
                 </Table.Row>
               </Table.Body>
