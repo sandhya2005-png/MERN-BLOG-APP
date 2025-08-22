@@ -71,12 +71,17 @@ export default function CommentSection({postId}) {
                 if (res.ok) {
                     const data = await res.json();
                     
-                    {comments.map(c => (
-                        <div key={c._id}>
-                            <p>{c.content}</p>
-                            <p>Likes: {c.numberOfLikes}</p>
-                        </div>
-                        ))}
+                    setComments(
+                        comments.map((comment) =>
+                            comment._id === commentId
+                            ? {
+                                ...comment,
+                                likes: data.likes,
+                                numberOfLikes: data.likes.length,
+                                }
+                            : comment
+                        )
+                        );
 
                     
                 }
