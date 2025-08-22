@@ -10,6 +10,10 @@ const commentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    postId: {   // ✅ add this field
+      type: String,
+      required: true,
+    },
     likes: {
       type: Array,
       default: [],
