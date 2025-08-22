@@ -41,7 +41,7 @@ export default function SignUp() {
     <div className="min-h-screen mt-20">
       <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-5">
         {/* left */}
-        <div className="">
+        <div className="flex-1">
           <Link to="/" className='font-bold dark:text-white text-4xl'>
             <span className='px-2 py-1 bg-gradient-to-r from-indigo-500
             via-purple-500 to-pink-500 rounded-lg text-white'>Educational</span>
@@ -55,15 +55,15 @@ export default function SignUp() {
 
         <div className="flex-1">
           <form className="='flex flex-col gap-4" onSubmit={handleSubmit}>
-            <div className="">
+            <div>
               <Label value='Your username' />
               <TextInput type='text' placeholder="Username" id='username' onChange={handleChange}/>
             </div>
-            <div className="">
+            <div>
               <Label value='Your email' />
               <TextInput type='email' placeholder="name@comapany.com" id='email' onChange={handleChange} />
             </div>
-            <div className="">
+            <div>
               <Label value='Your password' />
               <TextInput type='password' placeholder="Password" id='password' onChange={handleChange}/>
             </div>

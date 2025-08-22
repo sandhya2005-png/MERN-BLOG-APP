@@ -1,14 +1,15 @@
 import { Alert, Button, Textarea, TextInput } from "flowbite-react"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
-import Comment from "../../../api/models/comment.model"
+import { Link,useNavigate } from "react-router-dom"
 import CommentItem from './Comment'
+import Comment from "./Comment"
 export default function CommentSection({postId}) {
     const {currentUser}=useSelector(state=> state.user)
     const [ comment,setComment] =useState('');
     const [commentError,setCommentError] = useState(null);
     const [comments,setComments]=useState([]);
+    const navigate=useNavigate()
     console.log(comments);
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -56,6 +57,33 @@ export default function CommentSection({postId}) {
        }
        getComments();
     }, [postId])
+    const handleLike = async (commentId) => {
+        try {
+            if (!currentUser) {
+                navigate('/sign-in');
+                return;
+            }
+            const res= await fetch(`/api/comment/likeComment/${commentId}`,
+                
+                {
+                    method : 'PUT',
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    
+                    {comments.map(c => (
+                        <div key={c._id}>
+                            <p>{c.content}</p>
+                            <p>Likes: {c.numberOfLikes}</p>
+                        </div>
+                        ))}
+
+                    
+                }
+        } catch (error) {
+            console.log(message);
+        }
+    }
   return (
     <div className="max-w-2xl mx-auto w-full p-3">
         {currentUser ?
@@ -116,6 +144,7 @@ export default function CommentSection({postId}) {
                     <CommentItem
                         key={comment._id}
                         comment={comment}
+                        onLike={handleLike}
                     />
                 ))
             }
