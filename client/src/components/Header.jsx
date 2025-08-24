@@ -16,11 +16,14 @@ export default function Header() {
   const { theme } = useSelector((state) => state.theme);
   const [searchTerm, setSearchTerm] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
+  console.log(searchTerm);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const searchTermFromUrl = urlParams.get('searchTerm');
-    if (searchTermFromUrl) setSearchTerm(searchTermFromUrl);
+    if (searchTermFromUrl) {
+      setSearchTerm(searchTermFromUrl);
+    }
   }, [location.search]);
 
   const handleSignout = async () => {
@@ -39,17 +42,22 @@ export default function Header() {
     navigate(`/search?${searchQuery}`);
   };
 
+
   // Dynamic colors for theme
   const linkTextColor = theme === 'light' ? 'text-gray-900' : 'text-white';
   const linkHoverColor = theme === 'light' ? 'hover:bg-gray-200' : 'hover:bg-gray-700';
   const ellipsisColor = theme === 'light' ? 'text-gray-900' : 'text-white';
 
   return (
-    <Navbar fluid rounded className="border-b-2 relative">
+    <Navbar
+      fluid
+      rounded={false}
+      className="h-16 shadow-md px-4 sm:px-6 lg:px-8"
+    >
       {/* Logo */}
       <Link
         to="/"
-        className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white"
+        className="self-center text-sm sm:text-xl font-semibold dark:text-white"
       >
         <span className="px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white">
           Educational
@@ -57,7 +65,7 @@ export default function Header() {
         Blog
       </Link>
 
-      {/* Desktop Search - moved slightly right */}
+      {/* Desktop Search slightly right */}
       <form
         onSubmit={handleSubmit}
         className="hidden lg:flex flex-1 ml-8"
@@ -71,24 +79,15 @@ export default function Header() {
         />
       </form>
 
-      {/* Mobile Search Button */}
-      <Button className="w-12 h-10 lg:hidden" color="gray" pill>
-        <AiOutlineSearch />
-      </Button>
-
-      {/* Right Side Buttons */}
-      <div className="flex items-center gap-2 md:order-2">
-        {/* Theme Toggle - visible on all screen sizes */}
+      {/* Right side buttons */}
+      <div className="flex items-center gap-3 ml-auto">
+        {/* Theme Toggle */}
         <Button
           className="w-10 h-10 bg-transparent hover:bg-gray-300 dark:hover:bg-gray-700"
           pill
           onClick={() => dispatch(toggleTheme())}
         >
-          {theme === 'light' ? (
-            <FaSun className="text-yellow-400" />
-          ) : (
-            <FaMoon className="text-yellow-300" />
-          )}
+          {theme === 'light' ? <FaSun className="text-yellow-400" /> : <FaMoon className="text-yellow-300" />}
         </Button>
 
         {/* User Dropdown / Sign In */}
@@ -118,7 +117,7 @@ export default function Header() {
 
         {/* Three-dot Menu Toggle */}
         <Button
-          className={`w-10 h-10 ml-2 bg-transparent hover:bg-gray-300 dark:hover:bg-gray-700`}
+          className={`w-10 h-10 bg-transparent hover:bg-gray-300 dark:hover:bg-gray-700`}
           pill
           onClick={() => setMenuOpen(!menuOpen)}
         >
@@ -162,6 +161,11 @@ export default function Header() {
           </Link>
         </div>
       )}
+
+      {/* Mobile Search Button */}
+      <Button className="w-12 h-10 lg:hidden ml-2" color="gray" pill>
+        <AiOutlineSearch />
+      </Button>
     </Navbar>
   );
 }
