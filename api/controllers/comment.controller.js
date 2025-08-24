@@ -11,7 +11,7 @@ export const createComment = async (req,res,next) => {
         const newComment = new Comment({
             content,
             postId,
-            userId: req.user._id,
+            userId: req.user.id,
             
         })
         await newComment.save();
