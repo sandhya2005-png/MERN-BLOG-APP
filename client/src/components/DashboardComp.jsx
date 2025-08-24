@@ -146,9 +146,9 @@ export default function DashboardComp() {
                 <Table.HeadCell>User Image</Table.HeadCell>
                 <Table.HeadCell>Username</Table.HeadCell>
               </Table.Head>
-              {users.map((user) => (
-                <Table.Body key={user._id} className='divide-y'>
-                  <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800'>
+              <Table.Body className='divide-y'>
+                {users.map((user) => (
+                  <Table.Row key={user._id} className='bg-white dark:border-gray-700 dark:bg-gray-800'>
                     <Table.Cell>
                       <img
                         src={user.profilePicture}
@@ -158,8 +158,8 @@ export default function DashboardComp() {
                     </Table.Cell>
                     <Table.Cell>{user.username}</Table.Cell>
                   </Table.Row>
-                </Table.Body>
-              ))}
+                ))}
+              </Table.Body>
             </Table>
           </div>
         </div>
@@ -178,16 +178,16 @@ export default function DashboardComp() {
                 <Table.HeadCell>Comment Content</Table.HeadCell>
                 <Table.HeadCell>Likes</Table.HeadCell>
               </Table.Head>
-              {comments.map((comment) => (
-                <Table.Body key={comment._id} className='divide-y'>
-                  <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800'>
+              <Table.Body className='divide-y'>
+                {comments.map((comment) => (
+                  <Table.Row key={comment._id} className='bg-white dark:border-gray-700 dark:bg-gray-800'>
                     <Table.Cell className='w-96'>
                       <p className='line-clamp-2'>{comment.content}</p>
                     </Table.Cell>
                     <Table.Cell>{comment.numberOfLikes}</Table.Cell>
                   </Table.Row>
-                </Table.Body>
-              ))}
+                ))}
+              </Table.Body>
             </Table>
           </div>
         </div>
@@ -207,9 +207,9 @@ export default function DashboardComp() {
                 <Table.HeadCell>Post Title</Table.HeadCell>
                 <Table.HeadCell>Category</Table.HeadCell>
               </Table.Head>
-              {posts.map((post) => (
-                <Table.Body key={post._id} className='divide-y'>
-                  <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800'>
+              <Table.Body className='divide-y'>
+                {posts.map((post) => (
+                  <Table.Row key={post._id} className='bg-white dark:border-gray-700 dark:bg-gray-800'>
                     <Table.Cell>
                       <img
                         src={post.image}
@@ -220,8 +220,8 @@ export default function DashboardComp() {
                     <Table.Cell className='w-96'>{post.title}</Table.Cell>
                     <Table.Cell className='w-5'>{post.category}</Table.Cell>
                   </Table.Row>
-                </Table.Body>
-              ))}
+                ))}
+              </Table.Body>
             </Table>
           </div>
         </div>
